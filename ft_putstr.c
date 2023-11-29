@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 21:23:47 by ezahiri           #+#    #+#             */
-/*   Updated: 2023/11/27 22:18:01 by ezahiri          ###   ########.fr       */
+/*   Created: 2023/11/29 09:35:20 by ezahiri           #+#    #+#             */
+/*   Updated: 2023/11/29 09:46:13 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ int	ft_putstr(char *str)
 	int	count;
 
 	if (!str)
-	{
-		ft_putstr("(null)");
-		return (6);
-	}
+		return (ft_putstr("(null)"));
 	count = 0;
 	while (*str)
-		count += ft_putchar(*str++);
+		count += write(1, str++, 1);
 	return (count);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 17:33:14 by ezahiri           #+#    #+#             */
-/*   Updated: 2023/11/27 21:16:17 by ezahiri          ###   ########.fr       */
+/*   Created: 2023/11/29 09:33:40 by ezahiri           #+#    #+#             */
+/*   Updated: 2023/11/29 09:34:03 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,10 @@ int	ft_putnbr(long n)
 	int	count;
 
 	count = 0;
-	if (n == -2147483648)
-	{
-		count += ft_putstr("-2147483648");
-		return (count);
-	}
 	if (n < 0)
 	{
 		count += ft_putchar('-');
-		n *= -1;
+		n = -n;
 	}
 	if (n >= 10)
 	{
@@ -33,6 +28,6 @@ int	ft_putnbr(long n)
 		count += ft_putnbr(n % 10);
 	}
 	else
-		count += ft_putchar(n + '0');
+		count += ft_putchar('0' + n);
 	return (count);
 }

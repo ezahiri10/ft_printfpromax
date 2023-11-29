@@ -1,36 +1,35 @@
+
 NAME = libftprintf.a
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_printf.c \
-		ft_putchar.c \
-		ft_putstr.c \
-		ft_putnbr.c \
-		ft_puthexlower.c \
-		ft_puthexupper.c \
-		ft_putptr.c \
+SRC = ft_printf.c \
+	  ft_putchar.c \
+	  ft_putstr.c \
+	  ft_putnbr.c \
+	  ft_puthex.c \
+	  ft_putptr.c
 
-OBJS = $(SRCS:.c=.o)
-
-AR = ar rc
+OBJ = $(SRC:.c=.o)
 
 RM = rm -f
 
-all: $(NAME)
+AR = ar -rc 
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< 
+%.o : %.c
+	$(CC) $(CFLAGS) -c $<
 
+$(NAME) : $(OBJ) ft_printf.h
+		$(AR) $(NAME) $(OBJ)
+			
+all : $(NAME)
 
-$(NAME): $(OBJS) ft_printf.h
-	@$(AR) $(NAME) $(OBJS)
+clean : 
+	$(RM) $(OBJ)
 
-clean:
-	@$(RM) $(OBJS)
+fclean : clean
+	$(RM) $(NAME)
 
-fclean: clean
-	@$(RM) $(NAME)
-
-re: fclean all
+re : fclean all

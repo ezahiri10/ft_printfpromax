@@ -5,51 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 22:57:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2023/11/26 17:00:36 by ezahiri          ###   ########.fr       */
+/*   Created: 2023/11/29 09:34:12 by ezahiri           #+#    #+#             */
+/*   Updated: 2023/11/29 09:34:58 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_nbr(unsigned long n)
+int	ft_putptr(unsigned long n, int flag)
 {
 	int	count;
 
 	count = 0;
-	while (n != 0)
+	if (flag == 0)
 	{
-		count++;
-		n /= 16;
+		count += ft_putstr("0x");
+		flag = 1;
 	}
-	return (count);
-}
-
-static void	check(unsigned long n)
-{
 	if (n >= 16)
 	{
-		check(n / 16);
-		check(n % 16);
+		count += ft_putptr(n / 16, flag);
+		count += ft_putptr (n % 16, flag);
 	}
 	else if (n < 10)
-		ft_putchar(n + '0');
+		count += ft_putchar(n + 48);
 	else
-		ft_putchar(n + 'a' - 10);
-}
-
-int	ft_putptr(unsigned long n)
-{
-	int	count;
-
-	count = 0;
-	count += write(1, "0x", 2);
-	if (n == 0)
-		count += write(1, "0", 1);
-	else
-	{
-		check(n);
-		count += count_nbr(n);
-	}
+		count += ft_putchar (n - 10 + 'a');
 	return (count);
 }
