@@ -1,0 +1,11 @@
+# object files
+    *.o
+# libraries
+    *.a
+# shared libraries
+    *.so
+# executables
+    printf
+    a.out
+# hidden files
+    .*
